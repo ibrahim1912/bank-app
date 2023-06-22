@@ -2,6 +2,8 @@ package com.tiger.bankapp.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tiger.bankapp.entities.concretes.Account;
-import com.tiger.bankapp.entities.concretes.Customer;
 import com.tiger.bankapp.services.abstracts.AccountService;
 import com.tiger.bankapp.services.requests.accounts.CreateAccountMoneyRequest;
 import com.tiger.bankapp.services.requests.accounts.CreateAccountRequest;
@@ -45,37 +46,37 @@ public class AccountsController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<Account> createAccount(@RequestBody CreateAccountRequest createAccountRequest) {
+	public ResponseEntity<Account> createAccount(@RequestBody @Valid CreateAccountRequest createAccountRequest) {
 		this.accountService.createAccount(createAccountRequest);
 		return ResponseEntity.ok().build();
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<Account> updateAccount(@RequestBody UpdateAccountRequest updateAccountRequest) {
+	public ResponseEntity<Account> updateAccount(@RequestBody @Valid UpdateAccountRequest updateAccountRequest) {
 		this.accountService.updateAccount(updateAccountRequest);
 		return ResponseEntity.ok().build();
 	}
 	
 	@DeleteMapping("/delete")
-	public ResponseEntity<Account> deleteAccount(@RequestBody DeleteAccountRequest deleteAccountRequest) {
+	public ResponseEntity<Account> deleteAccount(@RequestBody @Valid DeleteAccountRequest deleteAccountRequest) {
 		this.accountService.deleteAccount(deleteAccountRequest);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@PostMapping("withdrawmoney")
-	public ResponseEntity<Account> withDrawMmoney(@RequestBody CreateAccountMoneyRequest createAccountMoneyRequest) {
+	public ResponseEntity<Account> withDrawMmoney(@RequestBody @Valid CreateAccountMoneyRequest createAccountMoneyRequest) {
 		this.accountService.withdrawMoney(createAccountMoneyRequest);
 		return ResponseEntity.ok().build();
 	}
 	
 	@PostMapping("addmoney")
-	public ResponseEntity<Account> addMoney(@RequestBody CreateAccountMoneyRequest createAccountMoneyRequest) {
+	public ResponseEntity<Account> addMoney(@RequestBody @Valid CreateAccountMoneyRequest createAccountMoneyRequest) {
 		this.accountService.addMoney(createAccountMoneyRequest);
 		return ResponseEntity.ok().build();
 	}
 	
 	@PostMapping("transfermoney")
-	public ResponseEntity<Account> transferMoney(@RequestBody CreateMoneyTransferRequest createMoneyTransferRequest) {
+	public ResponseEntity<Account> transferMoney(@RequestBody @Valid CreateMoneyTransferRequest createMoneyTransferRequest) {
 		this.accountService.transferMoney(createMoneyTransferRequest);
 		return ResponseEntity.ok().build();
 	}
